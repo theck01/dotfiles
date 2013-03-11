@@ -10,6 +10,9 @@ alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -la'
 
+# disable clear, use CTRL-L
+alias clear='echo "Use CTRL-L"'
+
 # connect to a known WPA2 based network via DHCP
 function wpa_connect {
   sudo wpa_supplicant -Dwext -i wlan0 -c /etc/wpa_supplicant.conf -B;
@@ -43,11 +46,10 @@ PATH=$PATH:$(ruby -rubygems -e "puts Gem.user_dir")/bin
 EDITOR=vim
 GIT_EDITOR=vim
 
-#start TMUX on login
-[[ $TERM != screen* ]] && exec tmux
-
-# use vi bindings rather than emacs
-set -o vi
-
 # fix small directory spelling mistakes
 shopt -s cdspell
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

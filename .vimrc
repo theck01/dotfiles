@@ -65,5 +65,12 @@ set relativenumber
 nnoremap j gj
 nnoremap k gk
 
-"save when losing focus
-au FocusLost * :wa
+"enable pathogen
+execute pathogen#infect()
+
+"add CTRLp to runtimepath
+set runtimepath^=~/.vim/bundle/ctrlp.vim/doc
+map <S-A-n> :CtrlP<return>
+
+"add NERDTree binding
+map <Bslash> :NERDTreeToggle<return>
