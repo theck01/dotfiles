@@ -17,6 +17,9 @@ set shiftwidth=2
 set autoindent
 set expandtab
 
+"map leader key to ','
+let mapleader = ","
+
 "let unsaved buffers persist in background
 set hidden
 
@@ -29,21 +32,24 @@ filetype on
 filetype plugin on
 filetype indent on
 
-"incremental search
-set incsearch
-
 "disable sounds and all visual warnings 
 set noerrorbells visualbell t_vb=
 
 "improve backspace
 set backspace=indent,eol,start
 
-"catch trailing whitespaces
-set listchars=tab:>-,trail:^,eol:$
-nmap <silent> <leader>s :set nolist!<CR>
-
-"always have info bar
+"show vim info
+set showmode
+set showcmd
 set ruler
+
+"improve search
+set ignorecase
+set smartcase
+set incsearch
+set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<return>
 
 "get better syntax highlighting
 set background=dark
