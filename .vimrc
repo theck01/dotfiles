@@ -1,3 +1,13 @@
+" vundle config
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'kien/ctrlp.vim'
 
 "prevent backups
 set noswapfile
@@ -19,6 +29,10 @@ set expandtab
 
 "map leader key to ','
 let mapleader = ","
+map <Bslash> :NERDTreeToggle<return>
+nnoremap <D-N> :CtrlP<return>
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 40
 
 "let unsaved buffers persist in background
 set hidden
@@ -28,9 +42,7 @@ set scrolloff=3
 
 "syntax highlighting
 syntax on
-filetype on
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 "disable sounds and all visual warnings 
 set noerrorbells visualbell t_vb=
@@ -57,10 +69,6 @@ set background=dark
 "set better color theme
 color peachpuff
 
-"Add 80+ line color indicator
-"highlight OverLength ctermbg=gray
-"match OverLength /\%81v.\+/
-
 "Makefiles do not expand tabs
 :autocmd FileType make set noexpandtab
 
@@ -71,12 +79,13 @@ set relativenumber
 nnoremap j gj
 nnoremap k gk
 
-"enable pathogen
-execute pathogen#infect()
+" disable automatic line breaks and long lines
+set nowrap
+set textwidth=0
+set wrapmargin=0
 
-"add CTRLp to runtimepath
-set runtimepath^=~/.vim/bundle/ctrlp.vim/doc
-map <S-A-n> :CtrlP<return>
-
-"add NERDTree binding
-map <Bslash> :NERDTreeToggle<return>
+" Arrow keys mapped for buffer switching
+nnoremap <left> :bprev<cr>
+nnoremap <right> :bnext<cr>
+nnoremap <down> :buffer #<cr>
+nnoremap <up> :buffers<cr>:buffer <space>

@@ -6,21 +6,15 @@
 [[ $- != *i* ]] && return
 
 # Directory list aliases
-alias ls='ls --color=auto'
+alias ls='ls -GF'
 alias la='ls -a'
 alias ll='ls -la'
 
 # disable clear, use CTRL-L
 alias clear='echo "Use CTRL-L"'
 
-# connect to a known WPA2 based network via DHCP
-function wpa_connect {
-  sudo wpa_supplicant -Dwext -i wlan0 -c /etc/wpa_supplicant.conf -B;
-  sudo dhcpcd wlan0;
-}
-
-# add custom scripts to path
-PATH=$PATH:/usr/local/scripts/
+# enable gvim command (OS X only)
+alias gvim='mvim'
 
 # customized prompt
 RED="\[\e[6;31m\]"
@@ -32,12 +26,7 @@ GREEN="\[\e[0;32m\]"
 PLAIN="\[\e[0m\]"
 
 # set prompt differently as root vs standard user
-if [[ $(id -u) -eq 0 ]]
-then
-  export PS1="${YELLOW}[\#] ${RED}\w # ${PLAIN}"
-else
-  export PS1="${YELLOW}[\#] ${GREEN}\w \$ ${PLAIN}"
-fi
+export PS1="${YELLOW}[\#] ${GREEN}\w \$ ${PLAIN}"
 
 # Path for gem installs
 PATH=$PATH:$(ruby -rubygems -e "puts Gem.user_dir")/bin
@@ -49,7 +38,11 @@ GIT_EDITOR=vim
 # fix small directory spelling mistakes
 shopt -s cdspell
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# history search with arrow keys
+bind  '"\e[A": history-search-backward'
+bind  '"\e[B": history-search-forward'
 
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# dont write out python byte code... because .pyc files suck
+export PYTHONDONTWRITEBYTECODE=1
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
