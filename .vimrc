@@ -8,6 +8,7 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
+Bundle 'Valloric/YouCompleteMe'
 
 "prevent backups
 set noswapfile
@@ -30,9 +31,11 @@ set expandtab
 "map leader key to ','
 let mapleader = ","
 map <Bslash> :NERDTreeToggle<return>
-nnoremap <D-N> :CtrlP<return>
+nnoremap <leader>f :CtrlP<return>
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 40
+set wildignore+=*/node_modules/*,*/bower_components/*
 
 "let unsaved buffers persist in background
 set hidden
@@ -89,3 +92,7 @@ nnoremap <left> :bprev<cr>
 nnoremap <right> :bnext<cr>
 nnoremap <down> :buffer #<cr>
 nnoremap <up> :buffers<cr>:buffer <space>
+
+" highlight background after 80 columns
+execute "set colorcolumn=" . join(range(80,334), ',')
+highlight ColorColumn ctermbg=darkgray
