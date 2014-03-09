@@ -23,7 +23,7 @@ GREEN="\[\e[0;32m\]"
 PLAIN="\[\e[0m\]"
 
 # set prompt differently as root vs standard user
-export PS1="${BLUE}explorer ${GREEN}\w \$ ${PLAIN}"
+export PS1="${BLUE}$(hostname) ${GREEN}\w \$ ${PLAIN}"
 
 # Editor paths, always set to vim
 EDITOR=vim
