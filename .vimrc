@@ -1,14 +1,20 @@
+
+
 " vundle config
+
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
 
-Bundle 'gmarik/vundle'
+" start and stop vundle to install plugins.
+call vundle#begin()
+
+Bundle 'gmarik/Vundle.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'Lokaltog/vim-distinguished'
+
+call vundle#end()
 
 "prevent backups
 set noswapfile
@@ -31,14 +37,6 @@ set expandtab
 "map leader key to ','
 let mapleader = ","
 map <Bslash> :NERDTreeToggle<return>
-nnoremap <leader>f :CtrlP<return>
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_max_files = 0
-let g:ctrlp_max_depth = 40
-set wildignore+=*/node_modules/*,*/bower_components/*
-
-"let unsaved buffers persist in background
-set hidden
 
 "start scroll early, to maintain context
 set scrolloff=3
@@ -70,7 +68,7 @@ nnoremap <leader><space> :noh<return>
 set background=dark
 
 "set better color theme
-color peachpuff
+color distinguished
 
 "Makefiles do not expand tabs
 :autocmd FileType make set noexpandtab

@@ -2,9 +2,6 @@
 # ~/.bashrc
 #
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
 # Directory list aliases
 alias ls='ls -GF'
 alias la='ls -a'
@@ -36,7 +33,4 @@ shopt -s cdspell
 bind  '"\e[A": history-search-backward'
 bind  '"\e[B": history-search-forward'
 
-# export development session secret
-export SESSION_SECRET="development"
-
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
+set -o vi
