@@ -29,8 +29,4 @@ GIT_EDITOR=vim
 # fix small directory spelling mistakes
 shopt -s cdspell
 
-# history search with arrow keys
-bind  '"\e[A": history-search-backward'
-bind  '"\e[B": history-search-forward'
-
 set -o vi

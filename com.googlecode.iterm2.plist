@@ -100,9 +100,9 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>213 292 924 485 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>417 -220 640 757 0 0 1280 777 </string>
+	<string>230 197 640 451 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>528 197 640 451 0 0 1280 777 </string>
+	<string>385 269 640 451 0 0 1280 777 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -808,7 +808,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.19473233819007874</real>
+			<real>0.063114829361438751</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
@@ -831,10 +831,12 @@
 			<string>/Users/theck</string>
 		</dict>
 	</array>
+	<key>NoSyncNeverRemindPrefsChangesCopy</key>
+	<true/>
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>456204244.91576701</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>456204244.92242599</real>
+	<real>462336325.02427</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -883,7 +885,7 @@
 	<key>PrefsCustomFolder</key>
 	<string>/Users/theck/dotfiles</string>
 	<key>PromptOnQuit</key>
-	<true/>
+	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<false/>
 	<key>RightCommand</key>
@@ -897,7 +899,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-06-17T03:06:57Z</date>
+	<date>2015-08-27T02:44:22Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
