@@ -1,17 +1,50 @@
-#
-# ~/.bashrc
-#
+# ~/.bashrc: executed by bash(1) for non-login shells.  # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) # for examples
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+[ -z "$PS1" ] && return
 
-# Directory list aliases
-alias ls='ls -GF'
-alias la='ls -a'
-alias ll='ls -la'
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
 
-# disable clear, use CTRL-L
-alias clear='echo "Use CTRL-L"'
+# override history command to synchronize history before display
+history() {
+  _bash_history_sync
+  builtin history "$@"
+}
+
+# synchronize history
+_bash_history_sync() {
+  builtin history -a
+  HISTFILESIZE=$HISTSIZE
+  builtin history -c
+  builtin history -r
+}
+
+# synchronize history on each command prompt
+export PROMPT_COMMAND="_bash_history_sync; $PROMPT_COMMAND"
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=2000
+HISTFILESIZE=$HISTSIZE
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+# Set terminal to be vi mode
+set -o vi
 
 # customized prompt
 RED="\[\e[6;31m\]"
@@ -21,22 +54,17 @@ BLACK="\[\e[1;30m\]"
 WHITE="\[\e[0;0m\]"
 GREEN="\[\e[0;32m\]"
 PLAIN="\[\e[0m\]"
+export PS1="${BLUE}tmac ${GREEN}\w \$ ${PLAIN}"
 
-# set prompt differently as root vs standard user
-export PS1="${BLUE}$(hostname) ${GREEN}\w \$ ${PLAIN}"
-
-# Editor paths, always set to vim
+# Editor defaults to vim
 EDITOR=vim
 GIT_EDITOR=vim
-
-# fix small directory spelling mistakes
-shopt -s cdspell
+P4EDITOR=vim
 
 # history search with arrow keys
-bind  '"\e[A": history-search-backward'
-bind  '"\e[B": history-search-forward'
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
 
-# export development session secret
-export SESSION_SECRET="development"
-
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
