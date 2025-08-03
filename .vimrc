@@ -12,10 +12,30 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tyru/restart.vim' " Enables :Restart command
 Plugin 'flazz/vim-colorschemes'
+Plugin 'elixir-editors/vim-elixir'
  
 call vundle#end()
 filetype plugin on
  
+"map leader key to ','
+let mapleader = ","
+ 
+"configure CtrlP
+nnoremap <leader>f :CtrlP<return>
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 40
+set wildignore+=*/node_modules/*
+set wildignore+=*.o
+set wildignore+=*/build/*
+set wildignore+=*/*.pdx/*
+ 
+"configure nerdtree
+map <Bslash> :NERDTreeToggle<return>
+map <leader>g :NERDTreeFind<return>
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeWinSize=45
+let g:NERDTreeIgnore=['node_modules$[[dir]]','\~$']
+
 "prevent backups
 set noswapfile
 set nobackup
@@ -32,22 +52,6 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
- 
-"map leader key to ','
-let mapleader = ","
- 
-"configure CtrlP
-nnoremap <leader>f :CtrlP<return>
-let g:ctrlp_max_files = 0
-let g:ctrlp_max_depth = 40
-set wildignore+=*/node_modules/*
- 
-"configure nerdtree
-map <Bslash> :NERDTreeToggle<return>
-let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeWinSize=45
-let g:NERDTreeIgnore=['node_modules$[[dir]]','\~$']
-
 " persist buffers in the background
 set hidden
 
@@ -74,7 +78,7 @@ set smartcase
 set incsearch
 set showmatch
 set hlsearch
-nnoremap <leader><space> :noh<return>
+nnoremap <leader><BS> :noh<return>
 nnoremap <leader>r :Restart<return>
  
 " force vim to recognize gnome terminal as a 256 color terminal
@@ -114,7 +118,15 @@ execute "set colorcolumn=" . join(range(81,334), ',')
 highlight ColorColumn ctermbg=darkgray
  
 " yank and paste to the system clipboard
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " Autosave on focus lost
 :au FocusLost * :wa
+
+" Syntax highlighting for elixir support files
+au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
+au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
+au BufRead,BufNewFile mix.lock set filetype=elixir
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
