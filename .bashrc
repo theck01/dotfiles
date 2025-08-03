@@ -36,6 +36,9 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# use nvim
+alias vim='nvim'
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -65,6 +68,23 @@ P4EDITOR=vim
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
+#Playdate SDK
+export PLAYDATE_SDK_PATH=~/Developer/PlaydateSDK
+export PATH="$PATH:~/Developer/PlaydateSDK/bin"
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/completions/asdf.bash"
+
+# Love2d
+alias love="/Applications/love.app/Contents/MacOS/love"
+alias lovedir="cd ~/Library/Application\ Support/LOVE/takezo"
+
+# Aseprite
+alias aseprite="/Applications/Aseprite.app/Contents/MacOS/aseprite"
