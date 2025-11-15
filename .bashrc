@@ -48,6 +48,10 @@ fi
 
 # Set terminal to be vi mode
 set -o vi
+# prevent vi mode edit-and-execute-command from opening, its an annoying
+# temporary editor that I never want
+bind -m vi-command -r v
+
 
 # customized prompt
 RED="\[\e[6;31m\]"
@@ -81,10 +85,22 @@ export NVM_DIR="$HOME/.nvm"
 
 . "$HOME/.asdf/asdf.sh"
 . "$HOME/.asdf/completions/asdf.bash"
+export PATH="$HOME/.asdf/shims:$PATH"
+
+# Make LuaRocks-installed executables (e.g., luacheck) available for Lua
+# This expands PATH, LUA_PATH, LUA_CPATH appropriately for whichever Lua version
+# asdf has activated in your shell or via .tool-versions.
+if command -v luarocks >/dev/null 2>&1; then
+  eval "$(luarocks path --bin)"
+fi
 
 # Love2d
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias lovedir="cd ~/Library/Application\ Support/LOVE/takezo"
+alias play="/Applications/love.app/Contents/MacOS/love ."
+alias play2="/Applications/love.app/Contents/MacOS/love . --input keyboard:default --input controller:0"
+alias lint="luacheck -q ."
+alias ot="scripts/online-test"
 
 # Aseprite
 alias aseprite="/Applications/Aseprite.app/Contents/MacOS/aseprite"
